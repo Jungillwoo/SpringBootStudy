@@ -1,0 +1,24 @@
+admin(관리자)
+pk Adminidx	
+
+아이디          adminName      VARCHAR(20)        
+비밀번호            adminpPassWord  VARCHAR(20)
+등급                 adminGrade   VARCHAR(20)
+
+User(사용자)
+pk useridx
+
+회원연락처  contactInfo VARCHAR(20)
+가입일     joinDate     DATE
+등급            grade VARCHAR(20) 
+
+Coupon 
+pk coponidx
+pk1 회원코드 useridx
+
+쿠폰이름              couponName   VARCHAR(50)   
+%할인율                        discountRate  DECIMA
+고정할인금액            ixedDiscountAmount   DECIMA
+월급일              payday DATE  
+만료일              expirationDate  DATE 
+사용상태            usageStatus BOLLEN
