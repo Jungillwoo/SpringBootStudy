@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.secure_0224.mapper.MemberMapper">
+
+  <!-- 회원등록 -->
+  <insert id="reg" parameterType="com.example.secure_0224.vo.MemberVO">
+    INSERT INTO member_t(m_id, m_pw, m_name)
+    VALUES(#{m_id}, #{m_pw}, #{m_name})
+  </insert>
+
+  <!-- 회원로그인 -->
+  <select id="login" parameterType="String" resultType="com.example.secure_0224.vo.MemberVO">
+    SELECT * FROM member_t
+    WHERE m_id = #{m_id}
+  </select>
+
+</mapper>
