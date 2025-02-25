@@ -46,6 +46,9 @@ public class MemberController {
         ModelAndView mv = new ModelAndView();
 
         int cnt = memberService.reg(vo);
+
+        // 저장 후 기본키가 있는지 검사
+        System.out.println("멤버기본키:" + vo.getM_idx());
         
         mv.setViewName("index");
         return mv;

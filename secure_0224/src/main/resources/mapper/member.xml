@@ -5,7 +5,7 @@
 <mapper namespace="com.example.secure_0224.mapper.MemberMapper">
 
   <!-- 회원등록 -->
-  <insert id="reg" parameterType="com.example.secure_0224.vo.MemberVO">
+  <insert id="reg" parameterType="com.example.secure_0224.vo.MemberVO" useGeneratedKeys="true" keyProperty="m_idx">
     INSERT INTO member_t(m_id, m_pw, m_name)
     VALUES(#{m_id}, #{m_pw}, #{m_name})
   </insert>
