@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tt.boot_0306.mapper.MemberMapper">
+
+  <!-- 회원등록 -->
+  <insert id="reg" parameterType="tt.boot_0306.vo.MemberVO" useGeneratedKeys="true" keyProperty="m_idx">
+    INSERT INTO member_t(m_id, m_pw, m_name)
+    VALUES(#{m_id}, #{m_pw}, #{m_name})
+  </insert>
+
+  <!-- 회원로그인 -->
+  <select id="login" parameterType="String" resultType="tt.boot_0306.vo.MemberVO">
+    SELECT * FROM member_t
+    WHERE m_id = #{m_id}
+  </select>
+
+</mapper>

@@ -38,7 +38,7 @@ public class BbsController {
 
     // 페이징 객체 생성
     // 한 페이지 당 보여질 게시물의 수 : 7, 한 블럭당 표현할 페이지 수 : 5
-    Paging page = new Paging(7, 5);
+    Paging page = new Paging(12, 5);
     page.setTotalRecord(totalRecord);
     page.setNowPage(nowPage);
 
