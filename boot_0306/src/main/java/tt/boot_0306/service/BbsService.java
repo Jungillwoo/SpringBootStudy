@@ -55,4 +55,8 @@ public class BbsService {
   public BbsVO get_bbs(String b_idx) {
     return bbsMapper.get_bbs(b_idx);
   }
+
+  public int addBbs(BbsVO vo) {
+    return bbsMapper.add(vo);
+  }
 }

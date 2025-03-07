@@ -1,10 +1,7 @@
 package tt.boot_0306.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tt.boot_0306.mapper.BbsMapper;
 import tt.boot_0306.service.BbsService;
 import tt.boot_0306.util.Paging;
@@ -71,6 +68,17 @@ public class BbsController {
 
     BbsVO vo = bbsService.get_bbs(b_idx);
     map.put("vo", vo);
+
+    return map;
+  }
+
+  @PostMapping("/add")
+  @ResponseBody
+  public Map<String, Object> addBbs(@RequestBody BbsVO vo) { // json 형식을 받을 때 RequestBody 선언 필요
+    Map<String, Object> map = new HashMap<>();
+
+    int cnt = bbsService.addBbs(vo);
+    map.put("cnt", cnt);
 
     return map;
   }

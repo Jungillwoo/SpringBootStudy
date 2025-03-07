@@ -12,4 +12,5 @@ public interface BbsMapper {
   List<BbsVO> list(Map<String, Object> map);
   int totalCount(Map<String, Object> map);
   BbsVO get_bbs(String b_idx);
+  int add(BbsVO bbs);
 }
