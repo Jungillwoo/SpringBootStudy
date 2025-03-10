@@ -23,7 +23,8 @@ public class ApiSecurityConfig {
       .authorizeHttpRequests( // 요청에 대한 권한을 지정
         authorize -> authorize
           .requestMatchers("/api/*/bbs/**", "/api/*/members/**")
-          .permitAll().anyRequest().authenticated()
+          .permitAll().anyRequest().authenticated())
+          .csrf(csrf -> csrf.disable() // 토큰 검사 비활성화
       );
     return http.build();
   }
