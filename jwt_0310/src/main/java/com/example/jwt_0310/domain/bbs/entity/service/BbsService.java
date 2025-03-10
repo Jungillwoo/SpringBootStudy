@@ -18,22 +18,23 @@ public class BbsService {
     return bbsRepository.findAll();
   }
 
-  public Bbs getBbs(Long b_idx) {
+  public Optional<Bbs> getBbs(Long b_idx) {
 
-    Bbs bbs = null;
-    // Optional 은 (NPE)NullPointException 발생하지 않도록 하는 객체
-    // Optional 을 사용하게 되면 가독성이 높아져 유지보수가 편리해진다.
-    Optional<Bbs> opt = bbsRepository.findById(b_idx);
-    if (!opt.isEmpty()) {
-      bbs = opt.get();
-    }
-    // OR
-    // if (opt.isPresent()) {
+    // Bbs bbs = null;
+    // // Optional 은 (NPE)NullPointException 발생하지 않도록 하는 객체
+    // // Optional 을 사용하게 되면 가독성이 높아져 유지보수가 편리해진다.
+    // Optional<Bbs> opt = bbsRepository.findById(b_idx);
+    // if (!opt.isEmpty()) {
     //   bbs = opt.get();
     // }
-    return bbs;
+    // // OR
+    // // if (opt.isPresent()) {
+    // //   bbs = opt.get();
+    // // }
+    // return bbs;
 
     // return bbsRepository.findById(b_idx).orElse(null); // 위 내용을 한줄로
+    return bbsRepository.findById(b_idx);
   }
 
   public Bbs createBbs(String title, String writer, String content) {
