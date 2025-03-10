@@ -1,5 +1,6 @@
 package com.example.jwt_0310.domain.controller;
 
+import com.example.jwt_0310.domain.bbs.entity.service.BbsService;
 import com.example.jwt_0310.domain.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import java.util.List;
 @RequestMapping("/api/v1/members")
 public class ApiV1MemberController {
 
+  private final BbsService bbsService;
+
   @GetMapping("")
   public List<Member> members() {
     List<Member> list = new ArrayList<>();
@@ -24,4 +27,5 @@ public class ApiV1MemberController {
 
     return list;
   }
+
 }
