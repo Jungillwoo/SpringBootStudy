@@ -4,6 +4,7 @@ import com.example.jwt_0310.global.jpa.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrePersist;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -15,13 +16,14 @@ import lombok.experimental.SuperBuilder;
 @ToString(callSuper = true) // 부모가 가지는 함수사용(필드 포함)
 public class Bbs extends BaseEntity {
 
-  @Column(columnDefinition = "bigint default 0")
+  @Column
   private Long hit;
 
   @Column(columnDefinition = "bigint default 0")
   private Long status;
 
   @Column
+  @NotBlank
   private String title, content, writer;
 
   @PrePersist // save 함수로 데이터가 저장되기 전에 수행

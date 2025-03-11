@@ -3,6 +3,7 @@ package com.example.jwt_0310.domain.controller;
 import com.example.jwt_0310.domain.bbs.entity.Bbs;
 import com.example.jwt_0310.domain.bbs.entity.service.BbsService;
 import com.example.jwt_0310.global.result.ResultData;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +50,11 @@ public class ApiV1BbsController {
       // Optional 안의 내용이 비어있기 때문에 () -> ResultData.of() 반환
       () -> ResultData.of(0, "fail", null)
       );
+  }
+
+  @PostMapping("")
+  public void write(@Valid @RequestBody Bbs bbs) { // 파라미터가 JSON으로 넘어오면 @RequestBody
+    bbsService.createBbs(bbs.getTitle(), bbs.getWriter(), bbs.getContent());
   }
 
 }
