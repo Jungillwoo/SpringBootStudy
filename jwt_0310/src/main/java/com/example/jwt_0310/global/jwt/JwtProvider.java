@@ -64,4 +64,14 @@ public class JwtProvider {
       .parseSignedClaims(token)
       .getPayload();
   }
+
+  // AccessToken 을 반환
+  public String getAccessToken(Map<String, Object> map) {
+    return genToken(map, 60*5); // 5분
+  }
+
+  // RefreshToken 을 반환
+  public String getRefreshToken(Map<String, Object> map) {
+    return genToken(map, 60&60*24*100); // 100일
+  }
 }

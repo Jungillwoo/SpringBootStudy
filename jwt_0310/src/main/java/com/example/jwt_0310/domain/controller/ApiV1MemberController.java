@@ -2,6 +2,7 @@ package com.example.jwt_0310.domain.controller;
 
 import com.example.jwt_0310.domain.member.entity.Member;
 import com.example.jwt_0310.domain.member.entity.service.MemberService;
+import com.example.jwt_0310.domain.member.input.MemVO;
 import com.example.jwt_0310.global.result.ResultData;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -36,24 +37,24 @@ public class ApiV1MemberController {
   // }
 
   @PostMapping("/login")
-public ResultData<Member> login(@Valid @RequestBody Member member) {
+public ResultData<Member> login(@Valid @RequestBody MemVO mvo) {
     int cnt = 0;
     String msg = "fail";
     // jwt 토큰 생성
-    Member mem = memberService.authAndMakeTokens(member.getMid(), member.getMpwd());
-
-    // response.addHeader("Set-Cookie", mem.getAccessToken());
-
-    ResponseCookie cookie = ResponseCookie.from("accessToken", mem.getAccessToken())
-      .path("/")
-      .sameSite("none")
-      .httpOnly(true)
-      .secure(true)
-      .build();
-
-    response.addHeader("Set-Cookie", cookie.toString());
+    Member mem = memberService.authAndMakeTokens(mvo.getMid(), mvo.getMpwd());
 
     if (mem != null) {
+      // response.addHeader("Set-Cookie", mem.getAccessToken());
+
+      ResponseCookie cookie = ResponseCookie.from("accessToken", mem.getAccessToken())
+        .path("/") // 특정 도메인에서만 사용
+        .sameSite("none") // 쿠키전달 안함
+        .httpOnly(true) // 쿠키접근 불허
+        .secure(true) // http 요청으로만 쿠키를 주고 받을 수 있게 함 (쿠키가 노출 되더라도 암호화 되어서 안전)
+        .build();
+
+      response.addHeader("Set-Cookie", cookie.toString());
+
       cnt = 1;
       msg = "success";
     }
