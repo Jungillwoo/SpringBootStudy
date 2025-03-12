@@ -55,6 +55,15 @@ public ResultData<Member> login(@Valid @RequestBody MemVO mvo) {
 
       response.addHeader("Set-Cookie", cookie.toString());
 
+      cookie = ResponseCookie.from("refreshToken", mem.getRefreshToken())
+        .path("/")
+        .sameSite("none")
+        .httpOnly(true)
+        .secure(true)
+        .build();
+
+      response.addHeader("Set-Cookie", cookie.toString());
+
       cnt = 1;
       msg = "success";
     }
