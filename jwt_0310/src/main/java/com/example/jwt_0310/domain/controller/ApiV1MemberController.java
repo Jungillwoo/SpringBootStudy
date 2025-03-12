@@ -4,6 +4,7 @@ import com.example.jwt_0310.domain.member.entity.Member;
 import com.example.jwt_0310.domain.member.entity.service.MemberService;
 import com.example.jwt_0310.domain.member.input.MemVO;
 import com.example.jwt_0310.global.result.ResultData;
+import com.example.jwt_0310.global.service.RequestService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,8 @@ public class ApiV1MemberController {
 
   @Autowired
   private HttpServletResponse response;
+
+  private final RequestService requestService;
 
   // @GetMapping("")
   // public List<Member> members() {
@@ -77,6 +80,14 @@ public ResultData<Member> login(@Valid @RequestBody MemVO mvo) {
       m -> ResultData.of(1, "success", m)).orElseGet(
       () -> ResultData.of(0, "fail", null)
     );
+  }
+
+  @PostMapping("/logout")
+  public ResultData<Member> logout() {
+    requestService.removeHeaderCookie("accessToken");
+    requestService.removeHeaderCookie("refreshToken");
+
+    return ResultData.of(0, "logout", null); // json 전달
   }
 
 }

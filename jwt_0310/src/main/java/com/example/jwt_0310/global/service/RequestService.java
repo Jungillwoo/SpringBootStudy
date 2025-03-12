@@ -85,4 +85,15 @@ public class RequestService {
     // mid 로 검색을 해온다.
     return member;
   }
+
+  public void removeHeaderCookie(String tokenName) {
+    ResponseCookie cookie = ResponseCookie.from(tokenName, null)
+      .path("/")
+      .sameSite("none")
+      .secure(true)
+      .httpOnly(true)
+      .maxAge(0)
+      .build();
+    response.addHeader("Set-Cookie", cookie.toString());
+  }
 }
