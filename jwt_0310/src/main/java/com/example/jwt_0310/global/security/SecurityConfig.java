@@ -17,6 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
                          // @NonNull 이 붙은 변수에 대해 생성자를 생성해주는 역할을 한다.
 public class SecurityConfig {
 
+  /*
+
+   */
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable)
