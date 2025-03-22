@@ -26,7 +26,7 @@ public class Emp {
   @Column(name = "deptno", insertable = false, updatable = false) // 중복 방지
   private Long deptno;
 
-  @ManyToOne // emp 테이블과 dept 테이블은 다대일 관계 이므로
+  @ManyToOne(fetch = FetchType.LAZY) // emp 테이블과 dept 테이블은 다대일 관계 이므로
   @JoinColumn(name = "deptno", referencedColumnName = "deptno")
   private Dept dept;
 }
